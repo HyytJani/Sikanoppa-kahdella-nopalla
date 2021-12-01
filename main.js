@@ -2,6 +2,7 @@ let yhteensa=0;
 let vuoro=0;
 pelaajat=[];
 var pelaajat;
+let kolmeparia=0;
 
 var face0=new Image()
 face0.src="img/d1.gif"
@@ -31,19 +32,41 @@ function aloitaPeli(){
 }
 
 function heita(){
+    let nopanluvutyhteensa=0
+   
     //create a random integer between 0 and 5
     var nopanluku=Math.round(Math.random()*5)
-    document.images["mydice"].src=eval("face"+nopanluku+".src")    
+    var nopanluku2=Math.round(Math.random()*5)
+    document.images["mydice"].src=eval("face"+nopanluku+".src") 
+    document.images["mydice2"].src=eval("face"+nopanluku2+".src")    
     var oikeanopanluku=nopanluku+1
-    yhteensa= yhteensa+oikeanopanluku    
+    var oikeanopanluku2=nopanluku2+1
+        if(oikeanopanluku==1&&oikeanopanluku2==1){
+            nopanluvutyhteensa=25;
+            kolmeparia++
+        }
+        else if(oikeanopanluku==oikeanopanluku2){
+            nopanluvutyhteensa=(oikeanopanluku+oikeanopanluku2)*2;
+            kolmeparia++
+
+        }else{
+            nopanluvutyhteensa=oikeanopanluku+oikeanopanluku2;
+            kolmeparia=0
+        }
+
+    yhteensa= yhteensa+nopanluvutyhteensa;  
     document.querySelector('#pisteet').innerHTML='';    
     let pisteet=document.createElement('p');
     let uusipisteet=document.createTextNode(yhteensa);
     pisteet.appendChild(uusipisteet);
     pisteet.className=('nimilista'); 
     document.querySelector('#pisteet').appendChild(pisteet);
-    if (oikeanopanluku==1){
+if (kolmeparia==3){
+    alert("Heitit kolmannet tuplat!\nVuoro siirtyy seuraavalle!");
+}    
+if (oikeanopanluku==1&&oikeanopanluku2>1||oikeanopanluku2==1&&oikeanopanluku>1){
         alert ("HEITIT YKKÖSEN! Vuoro siirtyy seuraavalle!")
+        kolmeparia=0;
         ykkonen();    }    
 }
 let lomake=document.forms['syota'];
