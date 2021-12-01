@@ -48,7 +48,6 @@ function heita(){
         else if(oikeanopanluku==oikeanopanluku2){
             nopanluvutyhteensa=(oikeanopanluku+oikeanopanluku2)*2;
             kolmeparia++
-
         }else{
             nopanluvutyhteensa=oikeanopanluku+oikeanopanluku2;
             kolmeparia=0
@@ -61,10 +60,10 @@ function heita(){
     pisteet.appendChild(uusipisteet);
     pisteet.className=('nimilista'); 
     document.querySelector('#pisteet').appendChild(pisteet);
-if (kolmeparia==3){
+    if (kolmeparia==3){
     alert("Heitit kolmannet tuplat!\nVuoro siirtyy seuraavalle!");
-}    
-if (oikeanopanluku==1&&oikeanopanluku2>1||oikeanopanluku2==1&&oikeanopanluku>1){
+    }    
+    if (oikeanopanluku==1&&oikeanopanluku2>1||oikeanopanluku2==1&&oikeanopanluku>1){
         alert ("HEITIT YKKÖSEN! Vuoro siirtyy seuraavalle!")
         kolmeparia=0;
         ykkonen();    }    
@@ -85,7 +84,7 @@ function ykkonen(){
     yhteensa=0;
     document.querySelector('#pisteet').innerHTML=yhteensa;
         lopeta();
-        }        
+        } 
     
 function lopeta(){
     pelaajat[vuoro].pisteet=pelaajat[vuoro].pisteet+yhteensa; 
